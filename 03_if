@@ -1,0 +1,12 @@
+## if page title's not empty, display title ##
+
+#if ( $page.getChild("title") )
+	<h1>$_SerializerTool.serialize( $page.getChild('title'), true )</h1>
+#end
+
+
+## if content's not empty, display content ##
+
+#if ( $data.getChild("content") )
+	$_SerializerTool.serialize( $page.getChild('content'), true )
+#end
