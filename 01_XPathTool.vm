@@ -1,0 +1,21 @@
+##	_XPathTool ##
+
+## Index block
+#set ( $block = $_XPathTool.selectSingleNode($contentRoot, "/system-index-block") )
+
+## Get the <system-page> node for the current page
+#set ( $currentPage = $_XPathTool.selectSingleNode( $contentRoot, "//system-page[@current='true']" ) )
+
+## System page
+#set ( $page = $_XPathTool.selectSingleNode($block, "calling-page/system-page") )
+
+## Data definition
+#set ( $data = $page.getChild('system-data-structure') )
+
+
+## Data Definition block
+#set ( $block = $_XPathTool.selectSingleNode($contentRoot, "/system-data-structure") )
+
+
+
+
