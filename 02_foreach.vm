@@ -1,7 +1,16 @@
-## foreach ##
-
+## Basic syntax
 #foreach ($item in $items)
-	$item
+  $item
 #end
 
 
+## Add separating text after the first item in a squence
+## From: Admissions open house.vm
+#foreach ($event in $events)
+    #if( $foreach.count > 1 )
+      or
+    #end
+    ${event.getChild('title').value}
+    ${event.getChild('location').value}
+    ${event.getChild('instructions').value}
+#end
