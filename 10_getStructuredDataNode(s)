@@ -1,0 +1,27 @@
+## Multiple groups
+
+#set ( $item = $currentPage.getStructuredDataNodes("newsandevents/item").get(0) )
+#set ($head = $item.getChild("headline").textValue )
+#set ($link = $item.getChild("link") )
+#set ($image = $item.getChild("image").getAsset() )
+
+<div class="thumbnail">
+    <a href="${link.textValue}" title="${_EscapeTool.xml($head)}">
+    <img alt="${_EscapeTool.xml($head)}" class="img-responsive" src="${image.link}"/></a>
+    <div class="caption-three"> 
+        <a href="${link.textValue}" title="${_EscapeTool.xml($head)}">${_EscapeTool.xml($head)}</a>
+    </div>
+</div>
+
+#* Data Definition
+
+<system-data-structure>
+  <group identifier="newsandevents" label="News and Events" restrict-to-groups="news">
+      <group identifier="item" label="Headline" restrict-to-groups="news">
+          <text identifier="headline" label="Headline" restrict-to-groups="news" required="true"/>
+          <text identifier="link" label="Link" restrict-to-groups="news" required="true"/>
+          <asset type="file" identifier="image" label="Thumbnail (247 x 98)" required="true" help-text="Photo must be resized to the correct dimensions in Photoshop"/>
+      </group>
+  </group>
+</system-data-structure>
+*#
