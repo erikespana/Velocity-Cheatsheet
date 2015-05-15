@@ -1,18 +1,3 @@
-## Multiple groups
-
-#set ( $item = $currentPage.getStructuredDataNodes("newsandevents/item").get(0) )
-#set ($head = $item.getChild("headline").textValue )
-#set ($link = $item.getChild("link") )
-#set ($image = $item.getChild("image").getAsset() )
-
-<div class="thumbnail">
-    <a href="${link.textValue}" title="${_EscapeTool.xml($head)}">
-    <img alt="${_EscapeTool.xml($head)}" class="img-responsive" src="${image.link}"/></a>
-    <div class="caption-three"> 
-        <a href="${link.textValue}" title="${_EscapeTool.xml($head)}">${_EscapeTool.xml($head)}</a>
-    </div>
-</div>
-
 #* Data Definition
 
 <system-data-structure>
@@ -25,3 +10,13 @@
   </group>
 </system-data-structure>
 *#
+
+## Multiple groups
+
+#set ( $item = $currentPage.getStructuredDataNodes("newsandevents/item").get(0) )
+<img src="${item.getChild("image").getAsset().link}" />
+<a href="${item.getChild("link").textValue}">
+    ${_EscapeTool.xml( $item.getChild("headline").textValue )}
+</a>
+
+
