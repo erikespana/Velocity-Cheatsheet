@@ -1,0 +1,113 @@
+#set($xPath = "//system-folder")
+#set($block = $_XPathTool.selectNodes($contentRoot, $xPath))
+
+## We don't really need to sort here, since the table offers that feature.
+##$_SortTool.addSortCriterion("last-modified-by", "", "text", "ascending", "")  
+##$_SortTool.sort($block)
+
+## --- SETTINGS --- ##
+
+#set($datePattern = "MM/dd/yy") 
+## MM/dd/yy causes sorting problems in the table.
+
+#set ($oldYear = 13) 
+## 20xx - What year is considered as old, for marking it in Red?
+
+## ---------------- ##
+
+<style>
+    thead th { 
+        font-weight: bold;
+        font-family: helvetica, sans-serif;
+    }
+    td th { 
+        font-family: helvetica, sans-serif;
+    }
+    .hidden {
+        display: none;
+    }
+    a, a:visited {
+        text-decoration: none;
+        color: #fff;
+        font-weight: bold;
+    }
+</style>
+
+<table id="table" class="tablesorter">
+    <thead>
+        <tr>
+            <th>Parent Folder</th>
+            <th>File</th>
+            <th>Last Modified By</th>
+		    <th data-sorter="shortDate" data-date-format="mmddyyy">Last Modified</th>
+            <th data-sorter="shortDate" data-date-format="mmddyyy">Last Published</th>
+	    </tr>
+    </thead>
+    
+    <tbody>
+
+#foreach ($folder in $block)
+    #set ($path = $folder.getChild("path").value)
+    #set ($site = $folder.getChild("site").value)
+    
+    ## If folder path contains "pdf", it must have PDFs in it
+    #if ($path.contains("pdf") || $path.contains("PDF"))
+        #set ($folderLocated = $_.locateFolder($path, $site))
+
+        #outputFolder($folderLocated $oldYear)
+    #end
+#end
+
+    </tbody>
+</table>
+
+#macro(outputFolder $folder $oldYear)  
+    #set ($children = $folder.children)
+    #set ($prevFolder = "")
+    
+    #foreach($child in $children)
+        #if($child.children) 
+            ## If it has children, it's a folder, so traverse that as well.
+            #outputFolder($child $oldYear)
+        #else
+            <tr>
+                ## -- Parent Folder --
+                ## Note: $folder.path often gives path of the file rather than
+                ## Parent Folder path; do this:
+                #set ($parentFolderName = 
+                    $child.parentFolderIdentifier.path.pathAsString)
+                
+                #if ($prevFolder.compareTo($parentFolderName) == 0)
+                    <td><span class="hidden">$parentFolderName</span></td>
+                #else
+                    #set ($prevFolder = $parentFolderName)
+                    <td>$parentFolderName</td>
+                #end
+                
+                ## -- Name --
+                <td><a href="${child.link}" target="_blank">$child.name</a></td>
+                
+                ## -- Last Modified By --
+                <td>$child.lastModifiedBy</td>
+                
+                ## -- Last Modified --
+                ## DATE COLOR RED - Color it red if older than $oldYear
+                #set ($dateString = $_DateTool.format($datePattern, $child.lastModified))
+                #set ($year = $dateString.split('/').get(2))
+                
+                #set ($Integer = 0)
+                #set ($yearInt = $Integer.parseInt($year))
+                
+                #set ($color = "#fff")
+                #if ($yearInt <= $oldYear)
+                    #set ($color = "#ff0000")
+                #end
+                
+                <td style="color: ${color}">${dateString}</td>
+                
+                ## -- Last Published --
+                <td>$_DateTool.format($datePattern, $child.lastPublishedOn)</td>
+            </tr>
+        #end
+    #end
+#end
