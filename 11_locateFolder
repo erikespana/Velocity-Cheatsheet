@@ -1,3 +1,5 @@
+## Traverse a folder type index block and search for folders containing "pdf" in the name
+
 #set($xPath = "//system-folder")
 #set($block = $_XPathTool.selectNodes($contentRoot, $xPath))
 
