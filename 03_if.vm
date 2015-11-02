@@ -10,3 +10,7 @@
 #if ( $data.getChild("content") )
 	$_SerializerTool.serialize( $page.getChild('content'), true )
 #end
+
+
+## Testing for empty WYSIWYG field:
+## http://help.hannonhill.com/kb/formats/testing-for-empty-wysiwyg-field
