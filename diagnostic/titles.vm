@@ -1,1 +1,22 @@
-## Paired with folder type index block.
+#* Pair this with the following index block (folder type):
+Rendering Behavior:     Render normally, starting at the indexed folder
+Indexed Asset Content:  Regular content
+Indexed Asset Types:    Pages
+Page XML:               Do not render page XML inline
+Sort Method:            Folder Order
+Sort Order:             Descending
+*#
+
+## Gather "system-page" and "system-folder" nodes
+#set ( $pages = $_XPathTool.selectNodes($contentRoot, "//system-page") )
+Showing $pages.size() results.
+
+#foreach ( $page in $pages )
+  #set ($p = $_.locatePage( $page.getChild("path").value,
+                          $page.getChild("site").value )
+     )
+  ##$_PropertyTool.outputProperties( $p.metadata )
+  #if ( $p.metadata.title.contains(">") )
+    <tr><td>$p.path</td><td>$p.metadata.title</td></tr>
+  #end
+#end
