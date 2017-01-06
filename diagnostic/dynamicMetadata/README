@@ -1,1 +1,40 @@
-Test
+Background
+
+Each page displays a contact email address based on the value selected from a dropdown list, in the custom metadata (dynamic-metadata[name="contact"])
+A velocity macro, included from the velocity format attached to the DEFAULT region, uses the value from the dropdown list to 
+
+#import("/_cascade/formats/contact-modified")
+
+#macro (outputContact $page)
+       #set($contact = $_XPathTool.selectSingleNode($page, "dynamic-metadata[name='contact']/value").value)
+       #set($block = $_.locateBlock("/_cascade/blocks/contacts/${contact}"))
+
+       #if(!$block.empty)
+        <p>For more information contact: 
+            $block.xML
+        </p>
+       #end
+    
+    ##if($page.getChild("last-modified").value)
+       ## #set($lastMod = $_DateTool.getDate($page.getChild("last-modified").value))
+        ##<p class="small right">Last updated: $_DateTool.format("MM/dd/yyyy", $lastMod)</small></p>   
+    ##end
+#end
+
+Because the blocks are included dynamically, I can't use the Relationships feature to tell which contact information XML Blocks are not being used.
+And because there are over 30 different metadata sets, they could have different options to choose from in the dropdown list.
+Lastly, the XML Blocks use javascript to generate the emailto: links (which could pose a problem if javascript disabled.
+It would be better to generate the HTML from a data definition block paired with a velocity format, possibly leveraging inline editing.
+
+The following scripts have been written to help manage the drop down lists.
+
+- TDI - Training:/reports/contact/contact-count-mdSets.vm
+Uses the query tool to check how many pages have selected a particular value from a dropdown list defined in a MetaData Set.
+Requires manually defining the name of each metadata set in a given Site.
+
+- TDI - Training:/reports/contact/iist-contacts.vm
+  A format that takes a Metadata Set and loops through each dropdown option definied in it.
+  Requires manually defining an array with every value in the dropdown list for the MetaData Set in question.
+
+QUESTIONS
+How can I get automatically check all the values for the same dropdown list in all the Metadata Sets in all the Sites?
