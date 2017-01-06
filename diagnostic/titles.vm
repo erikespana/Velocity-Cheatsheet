@@ -1,4 +1,4 @@
-#* Pair this with the following index block (folder type):
+#* Pair this with a folder type index block:
 Rendering Behavior:     Render normally, starting at the indexed folder
 Indexed Asset Content:  Regular content
 Indexed Asset Types:    Pages
@@ -11,12 +11,26 @@ Sort Order:             Descending
 #set ( $pages = $_XPathTool.selectNodes($contentRoot, "//system-page") )
 Showing $pages.size() results.
 
+<table class="tablesorter" id="table">
+#tableHeader()
+<tbody>
 #foreach ( $page in $pages )
   #set ($p = $_.locatePage( $page.getChild("path").value,
                           $page.getChild("site").value )
      )
   ##$_PropertyTool.outputProperties( $p.metadata )
-  #if ( $p.metadata.title.contains(">") )
+  ##if ( $p.metadata.title.contains(">") )
     <tr><td>$p.path</td><td>$p.metadata.title</td></tr>
-  #end
+  ##end
+#end
+</tbody>
+</table>
+
+#macro ( tableHeader )
+<thead>
+    <tr>
+        <th>Path</th>
+        <th>Title</th>
+    </tr>
+</thead>
 #end
