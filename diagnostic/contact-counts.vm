@@ -1,0 +1,47 @@
+<h1>${currentPage.metadata.title}</h1>
+##  create a new query object
+#set( $query = $_.query() )
+#set( $query = $query.byMetadataSet("site://TDI/Standard Page") )
+
+#set( $tdiStandardPage_contacts = ["accessibility","actdiv","advertise","agency","ahcreditcall","amahan","amusements","aor","aps","autohome","bcantu",	"bgerstenlauer","bgonzalez","bguardiola","bhatch","bsmith","bvoloto","captives","cbarnes","ccurrey","ccwg","cdamura",	"cfoi","chief","commercl","commiss","company","CompConnection","compliance","conference","coverageverification",	"cp","crowe","customerrel","customerserv","cvoegele","datacall","ddanzeiser","ddsched","deducation","derbe",	"dgreen","dhinojosa","diaz-lara","dlassig","dradford","ecunningham","edisupport","engr","finanalysis",	"fire","fireins","firesafecigarettes","fmlicensing","fmrules","forms","foregistration","fraud","fraudconference",	"fraudreport","gentrain","govern","hdadmin","healthsafety","healthytx","hr","icardenas","informal","injuryanalysis",	"intake","jbyckovski","jgarcia","jgreeley","jmitchell","jpousson","jspann","jwilson","kbrady","kjohnson","kcoleman",	"lalmanza","lhfilings","lhl_mgmt",	"license",
+	"licensece",	"life",	"lmata",	"lolivares",	"losscontrol",	"lwood",	"mbsurvey",	"mcqa",	"mdrinquiry",	"mediarelations",	"mediben",	"medicalregistration",	"melissah",	"mhamilton",	"mjimenez",	"mrresponse",	"mzurek",	"oma",	"oshcon",	"opc",	"openrecords",	"pbo",	"pcactuarial",	"pcfilingsintake",	"pcintake",	"pgilbert",	"pharmacy",	"pio_dwc",	"propertycas",	"premiumfinance",	"promptpay",	"publiceducation",	"purchasing",	"rallen",	"reccorr",	"registrationteam",	"reimbursementrates",	"resourcecenter",	"resparza",	"rlo",	"rtw",	"rulecomments",	"safetyhotline",	"safetytraining",	"sdrcontracting",	"selfinsure",	"serff",	"smo",	"storres",	"speak",	"strategic",	"supplements",	"tbarajas",	"tcampion",	"tdiconference",	"tdienews",	"tduarte",	"techana",	"texassure",	"texfirs",	"title",	"tpa",	"trodriguez",	"txcomp",	"txcomphelp",	"uragrp",	"vip",	"wcdoc",	"wcnet",	"wcopenrecords",	"wcresearch",	"wcrules",	"webmaster",	"webstaff",	"windstorm",	"workers",	"751report"])
+
+#set($query = $query.maxResults(501))
+#set($query = $query.searchAcrossAllSites())
+#set($query = $query.publishableOnly(false))
+#set($query = $query.indexableOnly(false))
+
+## Make some common code available.
+#import('/reports/contact/contacts.template.vm')
+
+## Collect the pages the most recently created pages.
+
+<p>Showing ${tdiStandardPage_contacts.size()} results</p>
+<table class="tablesorter" id="table">
+#tableHeader()
+<tbody>
+
+#foreach ( $contact in $tdiStandardPage_contacts )
+    ## Collect the pages the most recently created pages.
+    #set( $query = $query.hasMetadata("contact", $contact) )
+    #set( $assets = $query.execute() )
+    
+    <tr>
+        <td>${assets.size()}</td>
+        <td>${contact}</td>
+    </tr>
+#end
+
+
+
+#*    
+#foreach ( $asset in $assets )
+    ##$_PropertyTool.outputProperties( $asset.metadata.getDynamicField("contact") )
+    $asset.metadata.getDynamicField("contact").value
+    ##row( $asset )
+#end
+*#
+
+</tbody>
+</table>
+*#
