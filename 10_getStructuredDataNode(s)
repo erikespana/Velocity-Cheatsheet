@@ -1,6 +1,19 @@
 #* Data Definition
 
 <system-data-structure>
+	<group identifier="iconpic" label="Main Page Image" collapsed="true">
+		<asset type="file" identifier="image" label="Image"/>
+  </group>
+</system-data-structure>
+
+## Velocity
+
+$currentPage.getStructuredDataNode("iconpic/image").Asset.Link
+## Output: site://TDI/takefive/artwork/newyearstips-index.jpg
+
+#* Data Definition
+
+<system-data-structure>
   <group identifier="newsandevents" label="News and Events" restrict-to-groups="news">
       <group identifier="item" label="Headline" restrict-to-groups="news">
           <text identifier="headline" label="Headline" restrict-to-groups="news" required="true"/>
@@ -18,5 +31,4 @@
 <a href="${item.getChild("link").textValue}">
     ${_EscapeTool.xml( $item.getChild("headline").textValue )}
 </a>
-
 
