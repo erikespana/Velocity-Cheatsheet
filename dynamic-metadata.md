@@ -6,6 +6,7 @@ Page XML
     <name>homepage</name>
     <value>Insurance</value>
   </dynamic-metadata>
+```
 
 Velocity
 ```
