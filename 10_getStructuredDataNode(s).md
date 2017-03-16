@@ -1,18 +1,18 @@
-#* Data Definition
-
+Data Definition
+```
 <system-data-structure>
 	<group identifier="iconpic" label="Main Page Image" collapsed="true">
 		<asset type="file" identifier="image" label="Image"/>
   </group>
 </system-data-structure>
-
-## Velocity
-
+```
+Velocity
+```
 $currentPage.getStructuredDataNode("iconpic/image").Asset.Link
 ## Output: site://TDI/takefive/artwork/newyearstips-index.jpg
-
-#* Data Definition
-
+```
+Data Definition
+```
 <system-data-structure>
   <group identifier="newsandevents" label="News and Events" restrict-to-groups="news">
       <group identifier="item" label="Headline" restrict-to-groups="news">
@@ -22,13 +22,13 @@ $currentPage.getStructuredDataNode("iconpic/image").Asset.Link
       </group>
   </group>
 </system-data-structure>
-*#
+```
 
-## Multiple groups
-
+Multiple groups
+```
 #set ( $item = $currentPage.getStructuredDataNodes("newsandevents/item").get(0) )
 <img src="${item.getChild("image").getAsset().link}" />
 <a href="${item.getChild("link").textValue}">
     ${_EscapeTool.xml( $item.getChild("headline").textValue )}
 </a>
-
+```
