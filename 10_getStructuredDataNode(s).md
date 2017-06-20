@@ -7,7 +7,7 @@ data definition
 	</contentTypes>
 ```
 Velocity
-```
+```velocity
 ## $currentPage.getStructuredDataNodes("contentTypes").get(0).Class.Name
 ## com.hannonhill.cascade.api.adapters.StructuredDataNodeAPIAdapter
 
