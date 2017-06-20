@@ -1,6 +1,6 @@
 # Table of Contents
 
-- [Substring](substring)
+- [Substring](#substring)
 
 ## .contains()
 
