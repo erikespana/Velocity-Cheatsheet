@@ -1,3 +1,64 @@
+## Checkboxes
+data definition
+```xml
+<system-data-structure>
+	<contentTypes>
+		<value>Ordered List</value>
+	</contentTypes>
+```
+Velocity
+```
+## $currentPage.getStructuredDataNodes("contentTypes").get(0).Class.Name
+## com.hannonhill.cascade.api.adapters.StructuredDataNodeAPIAdapter
+
+## $currentPage.getStructuredDataNodes("contentTypes").get(0).getIdentifier()
+## contentTypes
+
+$currentPage.getStructuredDataNodes("contentTypes").get(0).textValues.size()
+## 2
+
+$currentPage.getStructuredDataNodes("contentTypes").get(0).textValues[1]
+## Ordered List
+
+## $_PropertyTool.outputProperties( $currentPage.getStructuredDataNodes("contentTypes").get(0) )
+ Object type: com.hannonhill.cascade.api.adapters.StructuredDataNodeAPIAdapter
+Properties:
+ - group: boolean
+ - asset: FolderContainedAsset
+ - asset: boolean
+ - assetType: String
+ - assetIdentifier: PathIdentifier
+ - textValues: String[]
+ - identifier: String
+ - group: StructuredDataNode[]
+ - getChildren(String): StructuredDataNode[]
+ - children: StructuredDataNode[]
+ - text: boolean
+ - textValue: String
+ - identifer: Identifier
+ - textValueAsXMLElement: Element
+ - textNodeOptions: TextNodeOptions
+ - getChild(String): StructuredDataNode
+ - allowCustomValues: boolean
+ - children: StructuredDataNode[]
+ - getChildren(String): StructuredDataNode[]
+ - text: boolean
+ - group: StructuredDataNode[]
+ - identifier: String
+ - assetIdentifier: PathIdentifier
+ - textValues: String[]
+ - asset: FolderContainedAsset
+ - group: boolean
+ - persisted: boolean
+ - asset: boolean
+ - allowCustomValues: boolean
+ - textNodeOptions: TextNodeOptions
+ - getChild(String): StructuredDataNode
+ - textValueAsXMLElement: Element
+ - class: Class
+ - textValue: String
+```
+## Images
 Data Definition
 ```
 <system-data-structure>
@@ -11,6 +72,7 @@ Velocity
 $currentPage.getStructuredDataNode("iconpic/image").Asset.Link
 ## Output: site://TDI/takefive/artwork/newyearstips-index.jpg
 ```
+## Groups
 Data Definition
 ```
 <system-data-structure>
