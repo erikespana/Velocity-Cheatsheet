@@ -1,0 +1,20 @@
+#set($folder = $_.locateFolder("/takefive"))
+#set($children = $folder.children) 
+## As of 7.4, a collection of Pages can be sorted by name or by folderOrder
+#set($sortedChildren = $_SortTool.sort($children, "folderOrder"))
+## Reverse the list
+#set($reversedList = $_ListTool.reverse($sortedChildren))
+#foreach($p in $reversedList)
+
+    ## exclude folders
+    #if ($p.assetType == 'page')
+        ## exclude index
+        #if ($p.path != 'takefive/index')
+            #if ($p.shouldBeIndexed)
+                #if ($p.shouldBePublished)
+                    $p.name
+                #end
+            #end
+        #end
+    #end
+#end  
