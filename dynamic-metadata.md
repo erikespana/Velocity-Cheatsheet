@@ -13,3 +13,9 @@ Velocity
 $page.metadata.getDynamicField("homepage").value
 ## Insurance
 ```
+
+```
+## Get dynamic metadata fields
+#set ($linkStatus = $currPage.metadata.getDynamicField("HarveyLink").value )
+#set ($language = $currPage.metadata.getDynamicField("Language").value )
+``` 
