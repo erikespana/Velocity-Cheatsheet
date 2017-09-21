@@ -1,22 +1,33 @@
-# Get a file's relationships
+# Getting a File's Relationships
 
-## Example
 ```
+## get a file using the Locator tool
 #set( $file = $_.locateFile("/path/to/file.pdf", "site" )
 
-#set( $file = $_.locateFile("${root}documents/wcrel2016.zip", $site ) )
-
+## if the file has relationships
 #if ( $file.linkingAssets.size() > 0 )
     
+    ## loop through each relationship
     #foreach ( $relationship in $file.linkingAssets )
-        $relationship.link
+        
+        ## check if the relationship is a Page object
+        #if ( $relationship.assetType == "page")
+        
+            ## and print out the page's link
+            $relationship.link
+            
+        #else
+        
+            ## print assetType
+            $relationship.assetType
+            
+        #end
     #end
-    
 #end
 ```
 
 ## How we got there
-get a file using the Locator tool
+got a file using the Locator tool
 ```
 #set( $file = $_.locateFile("/path/to/file.pdf", "site" )
 $_PropertyTool.outputProperties( $file )
@@ -27,7 +38,7 @@ Properties:
 ...
 ```
 
-get the file's Cascade relationships 
+got the file's Cascade relationships 
 ```
 $_PropertyTool.outputProperties( $file.linkingAssets )
 
@@ -39,7 +50,7 @@ Properties:
  - get(int): Object
  - class: Class
 ```
-
+and saw that the relationship was a Page object with a "link" attribute
 ```
 $_PropertyTool.outputProperties( $file.linkingAssets.get(0) )
 
