@@ -1,7 +1,23 @@
-# Relationships
+# Get a file's relationships
 
+## Example
+```
+#set( $file = $_.locateFile("/path/to/file.pdf", "site" )
+
+#set( $file = $_.locateFile("${root}documents/wcrel2016.zip", $site ) )
+
+#if ( $file.linkingAssets.size() > 0 )
+    
+    #foreach ( $relationship in $file.linkingAssets )
+        $relationship.link
+    #end
+    
+#end
+```
+
+## How we got there
 get a file using the Locator tool
-```velocity
+```
 #set( $file = $_.locateFile("/path/to/file.pdf", "site" )
 $_PropertyTool.outputProperties( $file )
 
@@ -113,3 +129,4 @@ Properties:
  - getBytes(Charset): byte[]
  - class: Class
 ```
+
