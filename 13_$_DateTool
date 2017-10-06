@@ -1,0 +1,21 @@
+#set ( $today = $_DateTool.getDate() ) ## get start execution time
+
+#*
+  Get number of days from dynamic metadata field
+  Note: Must convert numeric text to real number using MathTool first example:
+  https://www.hannonhill.com/kb/Script-Formats/#math-tool
+*#
+#set ( $thresholdText = "0" )
+#set ( $thresholdText = $currentPage.metadata.getDynamicField("threshold").value )
+#set ( $threshold = 0 )
+#set ( $threshold = $threshold.parseInt( $thresholdText ) )
+
+  #set( $publishedOn = $_DateTool.toDate( $_NumberTool.toNumber($item.lastModified ) ) )
+  #if( $_DateTool.difference($publishedOn, $today).getDays() < $threshold )
+    #set( $added = $publishedItems.add($item) )
+  #end
+
+
+
+#set ( $end = $_DateTool.getDate() ) ## get end execution time
+Execution time: $_DateTool.difference($today, $end)
