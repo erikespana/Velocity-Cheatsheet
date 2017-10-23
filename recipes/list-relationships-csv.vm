@@ -1,0 +1,46 @@
+##  Look up the relationships for an array of files in the web hits report.
+#set ($start = $_DateTool.getDate() )
+#set ( $domain = "http://www.tdi.texas.gov" )
+#set ( $site = "TDI" )
+#set ( $htmlExt = ".html" )
+
+#set( $files = [
+"/path/to/file.pdf",
+"/path/to/page"
+] )
+
+#foreach ( $path in $files )
+  #set( $file = "" )
+  #if ( $path.contains( $htmlExt ) )
+    #set ( $cleanPath = $_StringTool.substringBefore( $path, $htmlExt ) )
+    #set( $file = $_.locatePage($cleanPath, $site ) )
+  #else
+    #set ( $cleanPath = $path )
+    #set( $file = $_.locateFile($cleanPath, $site ) )
+  #end ## if $path.contains( $htmlExt )
+  #if ( ! $_PropertyTool.isNull( $file.name ) )
+    "${domain}${path}","${file.linkingAssets.size()}" #printRelationshipLinks( $file )
+  #end ## if
+#end ## foreach
+
+#macro ( printRelationshipLinks $file )
+  ## if the file has relationships
+  #if ( $file.linkingAssets.size() > 0 )
+    ## loop through each relationship
+    #foreach ( $relationship in $file.linkingAssets )
+      ## check if the relationship is a Page object
+      #if ( $relationship.assetType == "page")
+        ## and print out the page's link
+        ,"/${relationship.path}.html"
+      #else
+        ## print assetType
+        $relationship.assetType
+      #end ## if (\$relationship.assetType == "page")
+    #end ## foreach ( \$relationship in $file.linkingAssets)
+  #else
+    ,""
+  #end ## if ($file.linkingAssets.size() > 0 )
+#end ## macro ( printRelationshipLinks $file )
+
+#set ($end = $_DateTool.getDate() )
+$_DateTool.difference($start, $end)
