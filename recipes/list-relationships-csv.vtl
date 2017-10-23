@@ -11,13 +11,18 @@
 
 #foreach ( $path in $files )
   #set( $file = "" )
+  ## check if it's a page
   #if ( $path.contains( $htmlExt ) )
+    ## if it's a page remove the .html extension
     #set ( $cleanPath = $_StringTool.substringBefore( $path, $htmlExt ) )
     #set( $file = $_.locatePage($cleanPath, $site ) )
   #else
+    ## otherwise, assume it's a file
     #set ( $cleanPath = $path )
     #set( $file = $_.locateFile($cleanPath, $site ) )
   #end ## if $path.contains( $htmlExt )
+  
+  ## check if asset exists
   #if ( ! $_PropertyTool.isNull( $file.name ) )
     "${domain}${path}","${file.linkingAssets.size()}" #printRelationshipLinks( $file )
   #end ## if
