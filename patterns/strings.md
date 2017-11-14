@@ -3,6 +3,7 @@
 - [contains](#contains)
 - [indexOf](#indexof)
 - [replaceAll](replaceall)
+- [stripTags](striptags)
 - [Substring](#substring)
 
 ## contains
@@ -24,8 +25,16 @@ https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
 
 ## replaceAll
 Examples:
-[Read and merge css files](http://help-archives.hannonhill.com/discussions/velocity-formats/13573-read-and-merge-css-files)
-[Not sure how to read part of my XML feed.](http://help-archives.hannonhill.com/discussions/velocity-formats/11937-not-sure-how-to-read-part-of-my-xml-feed)
+- [Read and merge css files](http://help-archives.hannonhill.com/discussions/velocity-formats/13573-read-and-merge-css-files)
+- [Not sure how to read part of my XML feed.](http://help-archives.hannonhill.com/discussions/velocity-formats/11937-not-sure-how-to-read-part-of-my-xml-feed)
+
+## stripTags
+
+```
+DisplayTool.stripTags($string)
+```
+- [How to strip HTML from dynamic metadata in a Velocity format](http://help-archives.hannonhill.com/discussions/velocity-formats/47-how-to-strip-html-from-dynamic-metadata-in-a-velocity-format)
+- http://www.hannonhill.com/kb/Script-Formats/#display-tool
 
 ## Substring
 Extract characters before the first space in a string
