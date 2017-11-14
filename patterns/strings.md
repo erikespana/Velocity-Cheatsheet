@@ -24,8 +24,8 @@ https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
 
 ## replaceAll
 Examples:
-Read and merge css files(http://help-archives.hannonhill.com/discussions/velocity-formats/13573-read-and-merge-css-files)
-Not sure how to read part of my XML feed.(http://help-archives.hannonhill.com/discussions/velocity-formats/11937-not-sure-how-to-read-part-of-my-xml-feed)
+[Read and merge css files](http://help-archives.hannonhill.com/discussions/velocity-formats/13573-read-and-merge-css-files)
+[Not sure how to read part of my XML feed.](http://help-archives.hannonhill.com/discussions/velocity-formats/11937-not-sure-how-to-read-part-of-my-xml-feed)
 
 ## Substring
 Extract characters before the first space in a string
