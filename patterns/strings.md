@@ -1,6 +1,6 @@
 # Table of Contents
 
-- [indexOf](#indexOf)
+- [indexOf](#indexof)
 - [Substring](#substring)
 
 ## .contains()
@@ -8,6 +8,17 @@
 ## indexOf
 int indexOf (String str, int fromIndex)
 Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.
+Excerpt from map-content.vm:
+```
+#set ( $datadef = $a.dataDefinitionPath )
+#if ( $datadef == "Standard Page" )
+#if (! $_PropertyTool.isNull( $a.getStructuredDataNode("content") ) )
+## save WYSIWYG content to variable
+#set ( $wysiwyg = $a.getStructuredDataNode("content").textValue )
+## $class = 0 (-1 + 1) if not found, 1 (0 + 1) if found in first position, etc
+#set ( $matchindexof = $wysiwyg.indexOf("class=${q}govdel-text${q}", 0) + 1 )
+```
+
 https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
 
 ## Substring
