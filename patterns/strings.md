@@ -5,7 +5,8 @@
 
 ## .contains()
 
-## indexOf(String str, int fromIndex)
+## indexOf
+int indexOf (String str, int fromIndex)
 Returns the index within this string of the first occurrence of the specified substring, starting at the specified index.
 https://docs.oracle.com/javase/8/docs/api/java/lang/String.html
 
