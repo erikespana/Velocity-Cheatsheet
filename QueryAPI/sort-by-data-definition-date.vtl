@@ -27,9 +27,9 @@ $sortedBlogs.size()     ## 58
   #if( ! $_PropertyTool.isNull( $publicationDate ) )
     #set ( $publicationDateDate = $_DateTool.getDate( $publicationDate) )
     #set ( $publicationDateText = $_DateTool.format( "MMMMM d, yyyy", $publicationDateDate ) )
-    $publicationDateText
+    $publicationDateText  ## March 3, 2022
   #else
-    $blog.metadata.title
+    $blog.metadata.title  ## Blog title
   #end
 #end
 
