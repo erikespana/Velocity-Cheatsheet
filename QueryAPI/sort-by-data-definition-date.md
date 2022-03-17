@@ -1,0 +1,40 @@
+## Query blogs and sort by data definition date field.
+
+## Query API
+
+#set ( $blogs = $_.query().byContentType( "site://site/path/to/Content Type" ).execute() )
+$blogs.size()            ## 59
+
+## List Tool
+## Remove items from $blogs that don't have publication-date.textValue or where publication-date.textValue is null.
+
+#set ( $blogsRemovedNull = $_ListTool.removeNull( $blogs, "structuredDataNode(publication-date).textValue") )
+$blogsRemovedNull.size() ## 1
+blogs: $blogs.size()     ## 58
+
+## Sort Tool
+## Sort collection of Pages ($blogs) can be sorted by name or by folderOrder
+#set( $sortedBlogs = $_SortTool.sort( $blogs, "structuredDataNode(publication-date).textValue:desc") )
+$sortedBlogs.size()     ## 58
+
+## Foreach
+#foreach( $blog in $sortedBlogs )
+
+  ## Publication date
+  #set ( $publicationDate = $blog.getStructuredDataNode("publication-date").textValue )
+  
+  ## Check for publication date value
+  #if( ! $_PropertyTool.isNull( $publicationDate ) )
+    #set ( $publicationDateDate = $_DateTool.getDate( $publicationDate) )
+    #set ( $publicationDateText = $_DateTool.format( "MMMMM d, yyyy", $publicationDateDate ) )
+    $publicationDateText
+  #else
+    $blog.metadata.title
+  #end
+#end
+
+#* Sources
+- hannonhill.com/cascadecms/latest/developing-in-cascade/script-formats/velocity-tools.html#QueryAPI
+- hannonhill.com/cascadecms/latest/developing-in-cascade/script-formats/velocity-tools.html#ListTool
+- hannonhill.com/cascadecms/latest/developing-in-cascade/script-formats/velocity-tools.html#_SortTool_sort
+*#
