@@ -4,10 +4,10 @@
 <system-data-structure definition-path="System-outages">
     <outage>
       <websites>
+        <value>https://downdetector.com/</value>
         <value>https://www.github.com</value>
         <value>https://www.hannonhill.com/</value>
         <value>https://www.youtube.com/</value>
-        <value>https://www.github.dev/</value>
       </websites>
     </outage>
 </system-data-structure>
@@ -55,8 +55,15 @@ Loop through each group
      - textValueAsXMLElement: Element
      - textValues: String[]
     *#
-    
-    ## Combine multiple checkbox "selectedFieldItems" objects
+````
+Use the `selectedFieldItems: List` to get only the selected checkboxes.
+````
+## $websites.selectedFieldItems.size()
+## 4
+````
+
+You may want to combine two or more checkbox "selectedFieldItems" lists:
+````
     #set ( $multipleSelectedFieldItems = [] )
     #set ( $void = $multipleSelectedFieldItems.addAll( $websites.selectedFieldItems) )
     #set ( $void = $multipleSelectedFieldItems.addAll( $checkboxGroup2.selectedFieldItems ) )
@@ -70,6 +77,6 @@ Loop through each group
      - empty: boolean
      - get(int): Object
     *#
-#end
+#end ## foreach
 ````
 
