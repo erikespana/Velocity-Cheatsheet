@@ -9,8 +9,13 @@
         <value>http://www.texashealthoptions.com/index.html</value>
         <value>https://www.texashealthplancompare.com/index.html</value>
       </websites>
+    </outage>
+</system-data-structure>
 ```
+
 ### Velocity
+
+````
 ## Get all data definition groups
 #set ( $outages = $currentPage.getStructuredDataNodes("outage") )
 
@@ -20,7 +25,7 @@
   ## Get the checkbox group
   #set ( $websites = $outage.getChild( "websites" ) )
   $_PropertyTool.outputProperties( $websites )
-  #*
+#*
 #Object type: com.hannonhill.cascade.api.adapters.StructuredDataNodeAPIAdapter
 Properties:
  - allowCustomValues: boolean
@@ -52,4 +57,3 @@ Properties:
 *#
 ```
 
-```
