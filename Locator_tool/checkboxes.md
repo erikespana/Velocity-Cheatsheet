@@ -1,9 +1,10 @@
 ## Checkboxes within a group
-- [Get all data definition groups](#"Get all data definition groups")
-- [Loop through each group](#Loop through each group)
-- [Use selectedFieldItems: List to get the selected checkboxes](#Use selectedFieldItems: List to get the selected checkboxes)
-- [Combine two or more checkbox "selectedFieldItems" lists](#Combine two or more checkbox "selectedFieldItems" lists)
-- [Sort a checklist `selectedFieldItems` list by label](#Sort a checklist `selectedFieldItems` list by label)
+- [Get all data definition groups](#get-all-data-definition-groups)
+- [Loop through each group](#loop-through-each-group)
+- [Use selectedFieldItems: List to get the selected checkboxes](#use-selectedfielditems-list-to-get-the-selected-checkboxes)
+- [Combine two or more checkbox "selectedFieldItems" lists](#combine-two-or-more-checkbox-selectedfielditems-lists)
+- [Sort a checklist `selectedFieldItems` list by label](#sort-a-checklist-selectedfielditems-list-by-label)
+
 ### data definition
 
 ```xml
