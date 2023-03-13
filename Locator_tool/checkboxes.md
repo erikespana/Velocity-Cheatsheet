@@ -56,7 +56,7 @@ Loop through each group
      - textValues: String[]
     *#
 ````
-Use the `selectedFieldItems: List` to get only the selected checkboxes.
+Use `selectedFieldItems: List` to get only the selected checkboxes.
 ````
 ## $websites.selectedFieldItems.size()
 ## 4
