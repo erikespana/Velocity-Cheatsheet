@@ -4,6 +4,7 @@
 - [Use selectedFieldItems: List to get the selected checkboxes](#use-selectedfielditems-list-to-get-the-selected-checkboxes)
 - [Combine two or more checkbox "selectedFieldItems" lists](#combine-two-or-more-checkbox-selectedfielditems-lists)
 - [Sort a checklist `selectedFieldItems` list by label](#sort-a-checklist-selectedfielditems-list-by-label)
+[Display `selectedFieldItems` labels and values]
 
 ### data definition
 
@@ -88,3 +89,20 @@
 #### Sort a checklist `selectedFieldItems` list by label
 
 `#set( $sortedCheckboxes = $_SortTool.sort( $multipleSelectedFieldItems, "label:asc") )`
+
+#### Display `selectedFieldItems` labels and values
+
+````
+#foreach ( $checkbox in $sortedCheckboxes )
+     #*
+        $_PropertyTool.outputProperties( $checkbox )
+        Object type: com.hannonhill.cascade.api.adapters.FieldItemImpl
+        Properties:
+         - class: Class
+         - label: String
+         - value: String
+    *#
+    $checkbox.label, $checkbox.value
+#end
+````
+
