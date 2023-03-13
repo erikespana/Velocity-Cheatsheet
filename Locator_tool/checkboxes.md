@@ -4,7 +4,7 @@
 - [Use selectedFieldItems: List to get the selected checkboxes](#use-selectedfielditems-list-to-get-the-selected-checkboxes)
 - [Combine two or more checkbox "selectedFieldItems" lists](#combine-two-or-more-checkbox-selectedfielditems-lists)
 - [Sort a checklist `selectedFieldItems` list by label](#sort-a-checklist-selectedfielditems-list-by-label)
-[Display `selectedFieldItems` labels and values]
+- [Display `selectedFieldItems` labels and values](#display-selectedfielditems-labels-and-values)
 
 ### data definition
 
