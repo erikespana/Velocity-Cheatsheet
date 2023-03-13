@@ -79,4 +79,6 @@ You may want to combine two or more checkbox "selectedFieldItems" lists:
     *#
 #end ## foreach
 ````
+You can sort a checklist `selectedFieldItems` list by by label.
 
+`#set( $sortedCheckboxes = $_SortTool.sort( $multipleSelectedFieldItems, "label:asc") )`
