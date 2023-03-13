@@ -1,4 +1,9 @@
 ## Checkboxes within a group
+- [Get all data definition groups](#Get all data definition groups)
+- [Loop through each group](#Loop through each group)
+- [Use selectedFieldItems: List to get the selected checkboxes](#Use selectedFieldItems: List to get the selected checkboxes)
+- [Combine two or more checkbox "selectedFieldItems" lists](#Combine two or more checkbox "selectedFieldItems" lists)
+- [Sort a checklist `selectedFieldItems` list by label](#Sort a checklist `selectedFieldItems` list by label)
 ### data definition
 ```xml
 <system-data-structure definition-path="System-outages">
@@ -56,13 +61,13 @@ Loop through each group
      - textValues: String[]
     *#
 ````
-Use `selectedFieldItems: List` to get only the selected checkboxes.
+Use `selectedFieldItems: List` to get the selected checkboxes
 ````
 ## $websites.selectedFieldItems.size()
 ## 4
 ````
 
-You may want to combine two or more checkbox "selectedFieldItems" lists:
+Combine two or more checkbox "selectedFieldItems" lists
 ````
     #set ( $multipleSelectedFieldItems = [] )
     #set ( $void = $multipleSelectedFieldItems.addAll( $websites.selectedFieldItems) )
@@ -79,6 +84,6 @@ You may want to combine two or more checkbox "selectedFieldItems" lists:
     *#
 #end ## foreach
 ````
-You can sort a checklist `selectedFieldItems` list by label.
+Sort a checklist `selectedFieldItems` list by label
 
 `#set( $sortedCheckboxes = $_SortTool.sort( $multipleSelectedFieldItems, "label:asc") )`
