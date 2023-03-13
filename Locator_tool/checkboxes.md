@@ -20,11 +20,11 @@
 ```
 
 ### Velocity
-Get all data definition groups
+#### Get all data definition groups
 ````
 #set ( $outages = $currentPage.getStructuredDataNodes("outage") )
 ````
-Loop through each group
+#### Loop through each group
 ````
 #foreach( $outage in $outages)
 
@@ -62,13 +62,12 @@ Loop through each group
      - textValues: String[]
     *#
 ````
-Use `selectedFieldItems: List` to get the selected checkboxes
+#### Use `selectedFieldItems: List` to get the selected checkboxes
 ````
 ## $websites.selectedFieldItems.size()
 ## 4
 ````
-
-Combine two or more checkbox "selectedFieldItems" lists
+#### Combine two or more checkbox "selectedFieldItems" lists
 ````
     #set ( $multipleSelectedFieldItems = [] )
     #set ( $void = $multipleSelectedFieldItems.addAll( $websites.selectedFieldItems) )
@@ -85,6 +84,6 @@ Combine two or more checkbox "selectedFieldItems" lists
     *#
 #end ## foreach
 ````
-Sort a checklist `selectedFieldItems` list by label
+#### Sort a checklist `selectedFieldItems` list by label
 
 `#set( $sortedCheckboxes = $_SortTool.sort( $multipleSelectedFieldItems, "label:asc") )`
