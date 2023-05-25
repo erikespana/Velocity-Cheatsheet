@@ -50,5 +50,5 @@ Extract characters before the first space in a string
 #end
 ```
 
-## Parsing file extensions
+## file-extensions
 `#set ( $extension = $_StringTool.substringAfter( $asset.name, "." ).toLowerCase() )`
