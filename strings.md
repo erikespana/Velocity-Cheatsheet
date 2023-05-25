@@ -5,8 +5,8 @@
 - [replaceAll](replaceall)
 - [stripTags](striptags)
 - [Substring](#substring)
-- [Parsing file extensions](#Parsing file extensions)
-- [toLowerCase](#fileExtensions)
+- [Parsing file extensions](#file-extensions)
+- [toLowerCase](#file-extensions)
 
 ## contains
 
