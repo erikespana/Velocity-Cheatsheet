@@ -1,3 +1,4 @@
+```
 ##set ( $page = $_.locatePage("/takefive/accident-caused-by-other-driver", "TDI") )
 ##$_PropertyTool.outputProperties( $page.metadata.getDynamicField("category") )
 #*
@@ -26,3 +27,4 @@ $page.metadata.getDynamicField("category").selectedFieldItems.get(1).value
 Auto / vehicle
 General tips / other
 *#
+```
